@@ -130,7 +130,11 @@ body {
       48px 48px,
       96px 96px,
       96px 96px;
-    mask-image: radial-gradient(ellipse 80% 70% at 50% 45%, black 20%, transparent 75%);
+    mask-image: radial-gradient(
+      ellipse 80% 70% at 50% 45%,
+      black 20%,
+      transparent 75%
+    );
   }
 
   &__item {
@@ -447,7 +451,12 @@ body {
     color: $text-white;
     box-shadow:
       0 0 32px rgba(108, 99, 255, 0.4),
-      0 0 0 3px color-mix(in srgb, var(--avatar-accent, #{$color-primary}) 35%, transparent);
+      0 0 0 3px
+        color-mix(
+          in srgb,
+          var(--avatar-accent, #{$color-primary}) 35%,
+          transparent
+        );
     font-family: $font-mono;
     overflow: hidden;
     flex-shrink: 0;
@@ -650,7 +659,11 @@ body {
       overflow: hidden;
       flex-shrink: 0;
       box-shadow: 0 0 0 3px
-        color-mix(in srgb, var(--avatar-accent, #{$color-primary}) 40%, transparent);
+        color-mix(
+          in srgb,
+          var(--avatar-accent, #{$color-primary}) 40%,
+          transparent
+        );
 
       img {
         width: 100%;
@@ -1042,7 +1055,7 @@ body {
   background: $bg-dark-mid;
 
   &__inner {
-    max-width: 700px;
+    max-width: 820px;
     margin: 0 auto;
   }
 
@@ -1051,68 +1064,107 @@ body {
     text-align: center;
     margin-bottom: 2.5rem;
     font-size: 15px;
+    line-height: 1.7;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   &__grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.2fr 1fr;
     gap: 40px;
+    align-items: start;
   }
 
-  &__form-group {
-    margin-bottom: 14px;
+  &__channels {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
 
-    label {
-      color: $text-muted;
-      font-size: 13px;
-      display: block;
-      margin-bottom: 6px;
+  &__channel {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 18px;
+    border-radius: $radius-lg;
+    border: 1px solid $border-white-dim;
+    background: rgba(255, 255, 255, 0.03);
+    text-decoration: none;
+    color: inherit;
+    transition: $transition-fast;
+
+    &:hover {
+      transform: translateY(-2px);
+      border-color: $border-primary-md;
+      background: rgba(255, 255, 255, 0.05);
     }
 
-    input,
-    textarea {
-      width: 100%;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid $border-white-dim;
-      border-radius: $radius-sm;
-      padding: 10px 14px;
+    &--primary {
+      border-color: rgba(0, 104, 255, 0.45);
+      background: rgba(0, 104, 255, 0.08);
+
+      &:hover {
+        border-color: rgba(0, 104, 255, 0.7);
+        box-shadow: 0 8px 28px rgba(0, 104, 255, 0.15);
+      }
+
+      .contact__channel-label {
+        color: #5eb3ff;
+      }
+    }
+
+    &--email:hover {
+      border-color: rgba(108, 99, 255, 0.5);
+    }
+
+    &--phone:hover {
+      border-color: rgba(78, 205, 196, 0.5);
+    }
+
+    &-icon {
+      font-size: 26px;
+      flex-shrink: 0;
+      width: 44px;
+      text-align: center;
+    }
+
+    &-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    &-label {
+      font-weight: 600;
+      font-size: 15px;
       color: $text-white;
+      margin-bottom: 2px;
+    }
+
+    &-value {
       font-size: 14px;
-      font-family: $font-sans;
-      outline: none;
-      transition: border-color 0.2s;
-      box-sizing: border-box;
-
-      &::placeholder {
-        color: rgba(255, 255, 255, 0.2);
-      }
-
-      &:focus {
-        border-color: rgba(108, 99, 255, 0.5);
-      }
+      color: rgba(255, 255, 255, 0.75);
+      font-family: $font-mono;
+      word-break: break-all;
     }
 
-    textarea {
-      resize: vertical;
+    &-hint {
+      font-size: 12px;
+      color: $text-dim;
+      margin-top: 4px;
     }
-  }
 
-  &__submit {
-    width: 100%;
-    background: $color-primary;
-    color: $text-white;
-    border: none;
-    padding: 12px;
-    border-radius: $radius-sm;
-    font-size: 15px;
-    font-weight: 600;
-    font-family: $font-sans;
-    cursor: pointer;
-    transition: $transition-base;
-    margin-top: 2px;
+    &-arrow {
+      color: $text-dim;
+      font-size: 18px;
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
 
-    &.sent {
-      background: $color-secondary;
+    &:hover &-arrow {
+      transform: translateX(4px);
+      color: $color-primary;
     }
   }
 
@@ -1172,11 +1224,11 @@ body {
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
       color: $color-primary;
       font-family: monospace;
       font-weight: 700;
       font-size: 15px;
+      text-decoration: none;
       transition: $transition-fast;
 
       &:hover {

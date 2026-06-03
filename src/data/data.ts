@@ -78,12 +78,68 @@ export interface TechBgItem {
   delay?: number;
 }
 
+export interface ContactChannel {
+  id: string;
+  label: string;
+  hint: string;
+  value: string;
+  href: string;
+  icon: string;
+  primary?: boolean;
+}
+
 export interface PortfolioData {
   profile: Profile;
   stats: Stat[];
   skills: Skills;
   projects: Project[];
   timeline: TimelineItem[];
+}
+
+function phoneToIntl(phone: string): string {
+  const digits = phone.replace(/\D/g, "");
+  return digits.startsWith("0") ? `84${digits.slice(1)}` : digits;
+}
+
+/** Kênh liên hệ (Zalo, email, gọi điện) — không cần backend */
+export function getContactChannels(profile: Profile): ContactChannel[] {
+  const phoneIntl = phoneToIntl(profile.phone);
+  const phoneTel = profile.phone.replace(/\s/g, "");
+  const firstName = profile.name.trim().split(/\s+/).pop() ?? profile.name;
+  const mailSubject = encodeURIComponent(
+    `Liên hệ từ Portfolio — ${profile.name}`,
+  );
+  const mailBody = encodeURIComponent(
+    `Xin chào ${firstName},\n\nMình liên hệ từ portfolio của bạn vì:\n\n`,
+  );
+
+  return [
+    {
+      id: "zalo",
+      label: "Nhắn Zalo",
+      hint: "Phản hồi nhanh nhất",
+      value: profile.phone,
+      href: `https://zalo.me/${phoneIntl}`,
+      icon: "💬",
+      primary: true,
+    },
+    {
+      id: "email",
+      label: "Gửi Email",
+      hint: "Mở ứng dụng mail của bạn",
+      value: profile.email,
+      href: `mailto:${profile.email}?subject=${mailSubject}&body=${mailBody}`,
+      icon: "📧",
+    },
+    {
+      id: "phone",
+      label: "Gọi điện",
+      hint: "Gọi trực tiếp trên điện thoại",
+      value: profile.phone,
+      href: `tel:${phoneTel}`,
+      icon: "📱",
+    },
+  ];
 }
 
 // ─── DATA ─────────────────────────────────────────────────────────────────────

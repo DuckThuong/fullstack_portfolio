@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import portfolioData, {
+  getContactChannels,
   type Profile,
   type Project,
   type TechnicalSkill,
@@ -511,46 +512,14 @@ function TimelineSection() {
 
 // ─── CONTACT SECTION ──────────────────────────────────────────────────────────
 
-interface FormState {
-  name: string;
-  email: string;
-  message: string;
-}
-
 function ContactSection() {
-  const [form, setForm] = useState<FormState>({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [sent, setSent] = useState(false);
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleSubmit = () => {
-    if (form.name && form.email && form.message) {
-      setSent(true);
-      setTimeout(() => setSent(false), 3000);
-      setForm({ name: "", email: "", message: "" });
-    }
-  };
-
   const { profile } = portfolioData;
+  const channels = getContactChannels(profile);
 
-  const infoRows: [string, string, string][] = [
-    ["📧", "Email", profile.email],
-    ["📱", "Điện thoại", profile.phone],
-    ["📍", "Vị trí", profile.location],
-  ];
-
-  const socialIcons: [string, string][] = [
-    ["GitHub", "⌥"],
-    ["LinkedIn", "in"],
-    ["Facebook", "f"],
+  const socialLinks: [string, string, string][] = [
+    ["GitHub", "⌥", profile.social.github],
+    ["LinkedIn", "in", profile.social.linkedin],
+    ["Facebook", "f", profile.social.facebook],
   ];
 
   return (
@@ -558,72 +527,66 @@ function ContactSection() {
       <div className="contact__inner">
         <SectionTitle tag="06" title="Liên hệ" />
         <p className="contact__subtitle">
-          Bạn có cơ hội hợp tác? Mình rất vui được lắng nghe! 🚀
+          Không có form gửi server — bấm nút bên dưới để nhắn Zalo, gửi email
+          hoặc gọi trực tiếp. Mình sẽ phản hồi sớm nhất có thể.
         </p>
 
         <div className="contact__grid">
-          {/* Form */}
-          <div>
-            <div className="contact__form-group">
-              <label htmlFor="name">Tên của bạn</label>
-              <input
-                id="name"
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-                placeholder="Nguyễn Văn A"
-              />
-            </div>
-            <div className="contact__form-group">
-              <label htmlFor="email">Email</label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                value={form.email}
-                onChange={handleChange}
-                placeholder="email@example.com"
-              />
-            </div>
-            <div className="contact__form-group">
-              <label htmlFor="message">Tin nhắn</label>
-              <textarea
-                id="message"
-                name="message"
-                rows={4}
-                value={form.message}
-                onChange={handleChange}
-                placeholder="Xin chào, mình có dự án..."
-              />
-            </div>
-            <button
-              className={`contact__submit ${sent ? "sent" : ""}`}
-              onClick={handleSubmit}
-            >
-              {sent ? "✓ Đã gửi thành công!" : "Gửi tin nhắn →"}
-            </button>
+          <div className="contact__channels">
+            {channels.map((channel) => (
+              <a
+                key={channel.id}
+                href={channel.href}
+                target={channel.id === "phone" ? undefined : "_blank"}
+                rel={channel.id === "phone" ? undefined : "noreferrer"}
+                className={`contact__channel contact__channel--${channel.id}${
+                  channel.primary ? " contact__channel--primary" : ""
+                }`}
+              >
+                <span className="contact__channel-icon">{channel.icon}</span>
+                <div className="contact__channel-body">
+                  <div className="contact__channel-label">{channel.label}</div>
+                  <div className="contact__channel-value">{channel.value}</div>
+                  <div className="contact__channel-hint">{channel.hint}</div>
+                </div>
+                <span className="contact__channel-arrow" aria-hidden>
+                  →
+                </span>
+              </a>
+            ))}
           </div>
 
-          {/* Info */}
           <div>
-            <h3 className="contact__info-title">Thông tin liên hệ</h3>
-            {infoRows.map(([key, label, value]) => (
-              <div key={key} className="contact__info-row">
-                <span className="contact__info-row-icon">{key}</span>
-                <div>
-                  <div className="contact__info-row-label">{label}</div>
-                  <div className="contact__info-row-value">{value}</div>
-                </div>
+            <h3 className="contact__info-title">Thông tin</h3>
+            <div className="contact__info-row">
+              <span className="contact__info-row-icon">📍</span>
+              <div>
+                <div className="contact__info-row-label">Vị trí</div>
+                <div className="contact__info-row-value">{profile.location}</div>
               </div>
-            ))}
+            </div>
+            <div className="contact__info-row">
+              <span className="contact__info-row-icon">🕐</span>
+              <div>
+                <div className="contact__info-row-label">Trạng thái</div>
+                <div className="contact__info-row-value">Đang tìm việc</div>
+              </div>
+            </div>
 
             <div className="contact__social">
               <h3 className="contact__social-title">Mạng xã hội</h3>
               <div className="contact__social-icons">
-                {socialIcons.map(([name, icon]) => (
-                  <div key={name} className="contact__social-icon" title={name}>
+                {socialLinks.map(([name, icon, href]) => (
+                  <a
+                    key={name}
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="contact__social-icon"
+                    title={name}
+                  >
                     {icon}
-                  </div>
+                  </a>
                 ))}
               </div>
             </div>
