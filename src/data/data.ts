@@ -202,7 +202,7 @@ const portfolioData: PortfolioData = {
       id: 1,
       title: "GO-RIDE — Hệ thống đặt vé xe khách",
       description:
-        "Luồng tìm chuyến → chọn ghế → thanh toán giả lập, có lọc theo tuyến và ngày. Redux Toolkit gom state booking; TanStack Query cache danh sách chuyến; UI Ant Design kết hợp SASS tùy biến theme.",
+        "Dự án cá nhân: luồng tìm chuyến → chọn ghế → thanh toán giả lập, có lọc theo tuyến và ngày. Redux Toolkit quản lý state booking; TanStack Query cache danh sách chuyến; UI Ant Design kết hợp SASS tùy biến theme. Account demo: user: 0868472032 / pass: 12345678.",
       tech: [
         "React",
         "Redux Toolkit",
@@ -222,7 +222,7 @@ const portfolioData: PortfolioData = {
       id: 2,
       title: "MVL Logistics — Landing page công ty vận tải",
       description:
-        "Trang giới thiệu dịch vụ vận chuyển: hero, bảng giá, FAQ và form liên hệ có validate. Layout responsive; CSS Modules tách style theo block; Axios + TanStack Query xử lý gửi form.",
+        "Dự án cá nhân: trang giới thiệu dịch vụ vận chuyển gồm hero, bảng giá, FAQ và form liên hệ có validate. Layout responsive; CSS Modules tách style theo block; Axios + TanStack Query xử lý gửi form.",
       tech: [
         "React",
         "SASS",
@@ -241,7 +241,7 @@ const portfolioData: PortfolioData = {
       id: 3,
       title: "ChaTask — Quản lý công việc cá nhân",
       description:
-        "Todo app với CRUD task, filter theo trạng thái, lưu LocalStorage và cập nhật realtime qua Socket.IO. TypeScript giúp type-safe API nội bộ; React Router tách màn hình rõ ràng.",
+        "Dự án tại doanh nghiệp: todo app với CRUD task, filter theo trạng thái, lưu LocalStorage và cập nhật realtime qua Socket.IO. TypeScript đảm bảo type-safe cho API nội bộ; React Router tách màn hình rõ ràng.",
       tech: [
         "React",
         "TypeScript",
@@ -255,7 +255,7 @@ const portfolioData: PortfolioData = {
       ],
       image: "✅",
       color: "#4ECDC4",
-      demo: "#",
+      demo: "https://chat.chatask.ai/app/home",
       github: "#",
       featured: false,
     },
@@ -263,7 +263,7 @@ const portfolioData: PortfolioData = {
       id: 4,
       title: "Festaria MD — Hệ thống bán hàng cho CloudMD",
       description:
-        "Nền tảng thương mại: catalog sản phẩm, giỏ hàng, checkout và màn hình quản lý tồn kho. Bootstrap + Tailwind cho layout nhanh; Redux Toolkit đồng bộ state đơn hàng giữa các tab.",
+        "Dự án tại doanh nghiệp: nền tảng thương mại gồm catalog sản phẩm, giỏ hàng, checkout và màn hình quản lý tồn kho. Bootstrap + Tailwind cho layout nhanh; Redux Toolkit đồng bộ state đơn hàng giữa các tab. Tích hợp liên kết POS để quản lý trạng thái đơn hàng, tồn kho và thông tin khách hàng. Đồng bộ dữ liệu nhân viên qua API bên thứ ba Talent Palette.",
       tech: [
         "React",
         "React Router",
@@ -272,9 +272,72 @@ const portfolioData: PortfolioData = {
         "Bootstrap",
         "LocalStorage",
       ],
-      image: "🛍️",
+      image: "🏪",
       color: "#45B7D1",
       demo: "#",
+      github: "#",
+      featured: false,
+    },
+    {
+      id: 5,
+      title: "INBID — Nền tảng đấu giá trực tuyến",
+      description:
+        "Dự án tại doanh nghiệp: nền tảng đấu giá với danh sách phiên đấu giá, đặt giá thầu và theo dõi kết quả realtime. WebSocket cập nhật giá thầu tức thì, xử lý thông báo và tin nhắn trực tuyến. Tích hợp thanh toán Stripe và liên kết tài khoản Instagram/Facebook.",
+      tech: [
+        "React",
+        "React Router",
+        "TypeScript",
+        "WebSocket",
+        "Redux Toolkit",
+        "Tailwind CSS",
+        "Bootstrap",
+        "LocalStorage",
+      ],
+      image: "🏷️",
+      color: "#45B7D1",
+      demo: "#",
+      github: "#",
+      featured: false,
+    },
+    {
+      id: 6,
+      title: "ERP Chấm Công — Nền tảng quản lý chấm công nội bộ",
+      description:
+        "Dự án tại doanh nghiệp: module quản lý chấm công gồm bảng chấm công, duyệt đơn nghỉ và export báo cáo. Tích hợp REST API, phân quyền theo vai trò và xử lý edge case timezone/ngày lễ. Tự động cập nhật ngày công khi nhân viên sử dụng phép; hỗ trợ theo dõi và quản lý lịch nghỉ lễ để đảm bảo tính chính xác của dữ liệu.",
+      tech: [
+        "React",
+        "React Router",
+        "TypeScript",
+        "WebSocket",
+        "Redux Toolkit",
+        "Tailwind CSS",
+        "Bootstrap",
+        "LocalStorage",
+      ],
+      image: "⏱️",
+      color: "#45B7D1",
+      demo: "#",
+      github: "#",
+      featured: false,
+    },
+    {
+      id: 7,
+      title: "CowaTech HomePage — Nền tảng giới thiệu công ty",
+      description:
+        "Dự án tại doanh nghiệp: trang giới thiệu công ty gồm trang chủ, thông tin công ty và các dịch vụ. Redux Toolkit quản lý state ứng dụng và đồng bộ dữ liệu giữa các component. Giao diện quản trị cho phép cập nhật nội dung linh hoạt mà không cần chỉnh mã nguồn. Xây dựng UI với Tailwind CSS và Bootstrap, đảm bảo responsive trên nhiều thiết bị.",
+      tech: [
+        "React",
+        "React Router",
+        "TypeScript",
+        "WebSocket",
+        "Redux Toolkit",
+        "Tailwind CSS",
+        "Bootstrap",
+        "LocalStorage",
+      ],
+      image: "🏢",
+      color: "#45B7D1",
+      demo: "https://cowa-tech.com/",
       github: "#",
       featured: false,
     },
@@ -288,7 +351,7 @@ const portfolioData: PortfolioData = {
       organization: "TCOM CORP",
       description:
         "Phụ trách module bán hàng Festaria MD cho CloudMD: luồng đặt hàng, CRUD sản phẩm và đồng bộ tồn kho. Tối ưu form nhiều bước, tách component tái sử dụng và quản lý state với Redux Toolkit.",
-      icon: "🛍️",
+      icon: "🏪",
     },
     {
       year: "T10/2025",
@@ -297,7 +360,7 @@ const portfolioData: PortfolioData = {
       organization: "TCOM CORP",
       description:
         "Phát triển ChaTask — giao diện quản lý task với filter, board và thông báo realtime qua Socket.IO. Áp dụng TypeScript để giảm lỗi khi mở rộng API; TanStack Query cho fetch và cache dữ liệu.",
-      icon: "📋",
+      icon: "✅",
     },
     {
       year: "T3/2025",
@@ -309,12 +372,30 @@ const portfolioData: PortfolioData = {
       icon: "⏱️",
     },
     {
+      year: "T1/2025",
+      type: "work",
+      title: "Frontend Developer",
+      organization: "TCOM CORP",
+      description:
+        "Xây dựng CowaTech HomePage — trang giới thiệu công ty và dịch vụ. Redux Toolkit quản lý state, Tailwind CSS + Bootstrap đảm bảo layout responsive trên nhiều thiết bị. Tích hợp REST API và phân quyền theo vai trò.",
+      icon: "🏢",
+    },
+    {
+      year: "T11/2024",
+      type: "work",
+      title: "Frontend Developer",
+      organization: "TCOM CORP",
+      description:
+        "Phát triển INBID — nền tảng đấu giá trực tuyến với WebSocket cập nhật giá thầu realtime, tích hợp thanh toán Stripe và liên kết tài khoản Instagram/Facebook. Redux Toolkit đồng bộ state đơn hàng và thông báo.",
+      icon: "🏷️",
+    },
+    {
       year: "T8/2024",
       type: "work",
       title: "Frontend Developer",
       organization: "TCOM CORP",
       description:
-        "Bảo trì Ziraiten — nền tảng truyện tranh thị trường Nhật: lazy-load chapter, sửa lỗi responsive và rút gọn bundle. Phối hợp QA để tái hiện bug đọc trên mobile.",
+        "Bảo trì Ziraiten — nền tảng truyện tranh thị trường Nhật: triển khai lazy-load chapter, sửa lỗi responsive và tối ưu bundle. Phối hợp QA để tái hiện và xử lý bug đọc trên mobile.",
       icon: "📚",
     },
     {
