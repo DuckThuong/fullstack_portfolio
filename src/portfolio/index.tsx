@@ -6,6 +6,7 @@ import portfolioData, {
   type TechnicalSkill,
   type TimelineItem,
 } from "@/data/data";
+import PortfolioLogo from "./PortfolioLogo";
 import TechBackground from "./TechBackground";
 import "./style.scss";
 
@@ -47,7 +48,7 @@ function ProfileAvatar({ className, profile = portfolioData.profile }: ProfileAv
       {src ? (
         <img
           src={src}
-          alt={`Ảnh đại diện ${name}`}
+          alt={`Profile photo of ${name}`}
           loading="lazy"
           decoding="async"
           onError={() => {
@@ -116,16 +117,34 @@ const NAV_ITEMS = [
   "contact",
 ] as const;
 const NAV_LABELS: Record<string, string> = {
-  hero: "Trang chủ",
-  about: "Về tôi",
-  skills: "Kỹ năng",
-  projects: "Dự án",
-  timeline: "Kinh nghiệm",
-  contact: "Liên hệ",
+  hero: "Home",
+  about: "About",
+  skills: "Skills",
+  projects: "Projects",
+  timeline: "Experience",
+  contact: "Contact",
 };
 
 function scrollToSection(id: string): void {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+}
+
+async function downloadCv(fileUrl: string, fileName: string): Promise<void> {
+  try {
+    const response = await fetch(fileUrl);
+    const blob = await response.blob();
+    const blobUrl = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = blobUrl;
+    link.download = fileName;
+    link.click();
+    URL.revokeObjectURL(blobUrl);
+  } catch {
+    const link = document.createElement("a");
+    link.href = fileUrl;
+    link.download = fileName;
+    link.click();
+  }
 }
 
 interface SectionTitleProps {
@@ -164,9 +183,12 @@ function NavBar({ activeSection }: NavBarProps) {
           className="navbar__brand"
           onClick={() => scrollToSection("hero")}
         >
-          <ProfileAvatar className="navbar__avatar" />
-          <span className="navbar__logo">
-            &lt;{portfolioData.profile.name.split(" ").pop()} /&gt;
+          <PortfolioLogo size={38} className="navbar__logo-mark" />
+          <span className="navbar__wordmark">
+            <span className="navbar__wordmark-name">
+              {portfolioData.profile.name.split(" ").pop()}
+            </span>
+            <span className="navbar__wordmark-tag">Portfolio</span>
           </span>
         </button>
         <div className="navbar__links">
@@ -209,7 +231,7 @@ function HeroSection() {
       <div className="hero__content">
         <ProfileAvatar className="hero__avatar" />
 
-        <p className="hero__greeting">Xin chào, mình là</p>
+        <p className="hero__greeting">Hi, I'm</p>
 
         <h1 className="hero__name">{portfolioData.profile.name}</h1>
 
@@ -234,21 +256,27 @@ function HeroSection() {
             className="hero__btn-primary"
             onClick={() => scrollToSection("contact")}
           >
-            Liên hệ ngay →
+            Get in touch →
           </button>
-          <a
-            href={portfolioData.profile.cvLink}
+          <button
+            type="button"
             className="hero__btn-secondary"
+            onClick={() =>
+              downloadCv(
+                portfolioData.profile.cvFile,
+                portfolioData.profile.cvFileName,
+              )
+            }
           >
-            Tải CV ↓
-          </a>
+            Download CV ↓
+          </button>
         </div>
 
         <div className="hero__social">
           {(
             [
               ["GitHub", "⌥", portfolioData.profile.social.github],
-              ["LinkedIn", "in", portfolioData.profile.social.linkedin],
+              ["Email", "@", `mailto:${portfolioData.profile.email}`],
               ["Facebook", "f", portfolioData.profile.social.facebook],
             ] as [string, string, string][]
           ).map(([name, icon, href]) => (
@@ -276,15 +304,15 @@ function AboutSection() {
 
   const infoRows: [string, string, string][] = [
     ["📧 Email", "Email", profile.email],
-    ["📱 Phone", "Điện thoại", profile.phone],
-    ["📍 Location", "Vị trí", profile.location],
-    ["🕐 Status", "Trạng thái", "Đang tìm việc"],
+    ["📱 Phone", "Phone", profile.phone],
+    ["📍 Location", "Location", profile.location],
+    ["🕐 Status", "Status", "Open to work"],
   ];
 
   return (
     <section id="about" className="about">
       <div className="about__inner">
-        <SectionTitle tag="02" title="Về tôi" />
+        <SectionTitle tag="02" title="About Me" />
         <div className="about__grid">
           <div className="about__photo">
             <ProfileAvatar className="about__photo-avatar about__photo-avatar--large" />
@@ -362,17 +390,17 @@ function SkillsSection() {
   return (
     <section id="skills" className="skills">
       <div className="skills__inner">
-        <SectionTitle tag="03" title="Kỹ năng" />
+        <SectionTitle tag="03" title="Skills" />
         <div className="skills__grid">
           <div>
-            <h3 className="skills__subtitle">Kỹ năng kỹ thuật</h3>
+            <h3 className="skills__subtitle">Technical Skills</h3>
             {skills.technical.map((skill, i) => (
               <SkillBar key={skill.name} skill={skill} index={i} />
             ))}
           </div>
 
           <div>
-            <h3 className="skills__subtitle">Công cụ & Khác</h3>
+            <h3 className="skills__subtitle">Tools & More</h3>
             <div className="skills__tools">
               {skills.tools.map((tool) => (
                 <div key={tool} className="skills__tool-tag">
@@ -382,7 +410,7 @@ function SkillsSection() {
             </div>
 
             <div className="skills__learning">
-              <div className="skills__learning-label">Đang học</div>
+              <div className="skills__learning-label">Currently learning</div>
               {LEARNING_ITEMS.map((item) => (
                 <div key={item} className="skills__learning-item">
                   {item}
@@ -471,7 +499,7 @@ function ProjectsSection() {
   return (
     <section id="projects" className="projects">
       <div className="projects__inner">
-        <SectionTitle tag="04" title="Dự án nổi bật" />
+        <SectionTitle tag="04" title="Featured Projects" />
         <div className="projects__grid">
           {portfolioData.projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
@@ -488,7 +516,7 @@ function TimelineSection() {
   return (
     <section id="timeline" className="timeline">
       <div className="timeline__inner">
-        <SectionTitle tag="05" title="Kinh nghiệm & Học vấn" />
+        <SectionTitle tag="05" title="Experience & Education" />
         <div className="timeline__list">
           <div className="timeline__line" />
           {portfolioData.timeline.map((item: TimelineItem, i: number) => (
@@ -518,17 +546,17 @@ function ContactSection() {
 
   const socialLinks: [string, string, string][] = [
     ["GitHub", "⌥", profile.social.github],
-    ["LinkedIn", "in", profile.social.linkedin],
+    ["Email", "@", `mailto:${profile.email}`],
     ["Facebook", "f", profile.social.facebook],
   ];
 
   return (
     <section id="contact" className="contact">
       <div className="contact__inner">
-        <SectionTitle tag="06" title="Liên hệ" />
+        <SectionTitle tag="06" title="Contact" />
         <p className="contact__subtitle">
-          Không có form gửi server — bấm nút bên dưới để nhắn Zalo, gửi email
-          hoặc gọi trực tiếp. Mình sẽ phản hồi sớm nhất có thể.
+          No server-side form — tap a button below to message on Zalo, send an
+          email, or call directly. I'll get back to you as soon as I can.
         </p>
 
         <div className="contact__grid">
@@ -557,24 +585,24 @@ function ContactSection() {
           </div>
 
           <div>
-            <h3 className="contact__info-title">Thông tin</h3>
+            <h3 className="contact__info-title">Info</h3>
             <div className="contact__info-row">
               <span className="contact__info-row-icon">📍</span>
               <div>
-                <div className="contact__info-row-label">Vị trí</div>
+                <div className="contact__info-row-label">Location</div>
                 <div className="contact__info-row-value">{profile.location}</div>
               </div>
             </div>
             <div className="contact__info-row">
               <span className="contact__info-row-icon">🕐</span>
               <div>
-                <div className="contact__info-row-label">Trạng thái</div>
-                <div className="contact__info-row-value">Đang tìm việc</div>
+                <div className="contact__info-row-label">Status</div>
+                <div className="contact__info-row-value">Open to work</div>
               </div>
             </div>
 
             <div className="contact__social">
-              <h3 className="contact__social-title">Mạng xã hội</h3>
+              <h3 className="contact__social-title">Social</h3>
               <div className="contact__social-icons">
                 {socialLinks.map(([name, icon, href]) => (
                   <a
@@ -602,7 +630,13 @@ function ContactSection() {
 function Footer() {
   return (
     <footer className="footer">
-      <p>© 2024 {portfolioData.profile.name} · Built with ⚛️ ReactJS</p>
+      <div className="footer__brand">
+        <PortfolioLogo size={28} className="footer__logo" />
+        <p>
+          © {new Date().getFullYear()} {portfolioData.profile.name} · Built with
+          ⚛️ ReactJS & SCSS
+        </p>
+      </div>
     </footer>
   );
 }

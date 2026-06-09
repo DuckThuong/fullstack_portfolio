@@ -1,4 +1,5 @@
 import avatarPhoto from "./avatar.jpg";
+import cvPdf from "./CV_FrontEnd_TrinhDucThuong.pdf";
 
 // ─── INTERFACES ──────────────────────────────────────────────────────────────
 
@@ -22,7 +23,10 @@ export interface Profile {
   avatarColor: string;
   bio: string;
   social: Social;
-  cvLink: string;
+  /** File CV local (import PDF) */
+  cvFile: string;
+  /** Tên file khi tải xuống */
+  cvFileName: string;
 }
 
 export interface Stat {
@@ -107,17 +111,17 @@ export function getContactChannels(profile: Profile): ContactChannel[] {
   const phoneTel = profile.phone.replace(/\s/g, "");
   const firstName = profile.name.trim().split(/\s+/).pop() ?? profile.name;
   const mailSubject = encodeURIComponent(
-    `Liên hệ từ Portfolio — ${profile.name}`,
+    `Contact from Portfolio — ${profile.name}`,
   );
   const mailBody = encodeURIComponent(
-    `Xin chào ${firstName},\n\nMình liên hệ từ portfolio của bạn vì:\n\n`,
+    `Hi ${firstName},\n\nI'm reaching out via your portfolio because:\n\n`,
   );
 
   return [
     {
       id: "zalo",
-      label: "Nhắn Zalo",
-      hint: "Phản hồi nhanh nhất",
+      label: "Message on Zalo",
+      hint: "Fastest response",
       value: profile.phone,
       href: `https://zalo.me/${phoneIntl}`,
       icon: "💬",
@@ -125,16 +129,16 @@ export function getContactChannels(profile: Profile): ContactChannel[] {
     },
     {
       id: "email",
-      label: "Gửi Email",
-      hint: "Mở ứng dụng mail của bạn",
+      label: "Send Email",
+      hint: "Opens your mail app",
       value: profile.email,
       href: `mailto:${profile.email}?subject=${mailSubject}&body=${mailBody}`,
       icon: "📧",
     },
     {
       id: "phone",
-      label: "Gọi điện",
-      hint: "Gọi trực tiếp trên điện thoại",
+      label: "Call",
+      hint: "Direct call on mobile",
       value: profile.phone,
       href: `tel:${phoneTel}`,
       icon: "📱",
@@ -148,29 +152,29 @@ const portfolioData: PortfolioData = {
   profile: {
     name: "Trịnh Đức Thưởng",
     title: "FrontEnd ReactJS Developer",
-    tagline: "Biến ý tưởng thành giao diện đẹp — từng dòng code một.",
+    tagline: "Turning ideas into polished interfaces — one line of code at a time.",
     email: "trinhthuong26022003@gmail.com",
     phone: "0868 472 032",
-    location: "Hà Nội, Việt Nam",
+    location: "Hanoi, Vietnam",
     avatar: avatarPhoto,
     avatarInitials: "TT",
     avatarColor: "#6C63FF",
-    bio: "Frontend Developer tập trung vào React và TypeScript — thích biến wireframe thành giao diện mượt, dễ bảo trì. Đã làm sản phẩm từ đặt vé, logistics đến e-commerce và ERP. Đang tìm team nơi có thể học thêm, đóng góp code chất lượng và làm việc cùng designer/backend hiệu quả.",
+    bio: "Frontend Developer focused on React and TypeScript — I enjoy turning wireframes into smooth, maintainable UIs. Experience spans bus booking, logistics, e-commerce, and ERP systems. Looking for a team where I can keep learning, ship quality code, and collaborate well with designers and backend engineers.",
     social: {
       github: "https://github.com/DuckThuong",
       linkedin:
         "https://www.linkedin.com/in/tr%E1%BB%8Bnh-%C4%91%E1%BB%A9c-th%C6%B0%E1%BB%9Fng-a75669413",
       facebook: "https://www.facebook.com/duck.thuongggg/",
     },
-    cvLink:
-      "https://www.topcv.vn/xem-cv/BgQHAlcFVwVXVQVWXAUBUAVVAgEIWgJVW1FQAQ0924",
+    cvFile: cvPdf,
+    cvFileName: "CV_FrontEnd_TrinhDucThuong.pdf",
   },
 
   stats: [
-    { label: "Dự án hoàn thành", value: "6" },
-    { label: "Năm kinh nghiệm", value: "2" },
-    { label: "Công nghệ", value: "8+" },
-    { label: "Commits GitHub", value: "~ 300+" },
+    { label: "Projects completed", value: "6" },
+    { label: "Years of experience", value: "2" },
+    { label: "Technologies", value: "8+" },
+    { label: "GitHub commits", value: "~ 300+" },
   ],
 
   skills: {
@@ -189,20 +193,20 @@ const portfolioData: PortfolioData = {
     ],
     tools: ["VS Code", "Figma", "Postman", "Vercel", "Firebase"],
     soft: [
-      "Tư duy logic",
-      "Làm việc nhóm",
-      "Ham học hỏi",
-      "Chủ động",
-      "Giao tiếp tốt",
+      "Logical thinking",
+      "Teamwork",
+      "Eager to learn",
+      "Proactive",
+      "Strong communication",
     ],
   },
 
   projects: [
     {
       id: 1,
-      title: "GO-RIDE — Hệ thống đặt vé xe khách",
+      title: "GO-RIDE — Bus Ticket Booking System",
       description:
-        "Luồng tìm chuyến → chọn ghế → thanh toán giả lập, có lọc theo tuyến và ngày. Redux Toolkit gom state booking; TanStack Query cache danh sách chuyến; UI Ant Design kết hợp SASS tùy biến theme.",
+        "Search trip → select seat → mock payment flow, with route and date filters. Redux Toolkit manages booking state; TanStack Query caches trip lists; Ant Design UI with custom SASS theming.",
       tech: [
         "React",
         "Redux Toolkit",
@@ -220,9 +224,9 @@ const portfolioData: PortfolioData = {
     },
     {
       id: 2,
-      title: "MVL Logistics — Landing page công ty vận tải",
+      title: "MVL Logistics — Transport Company Landing Page",
       description:
-        "Trang giới thiệu dịch vụ vận chuyển: hero, bảng giá, FAQ và form liên hệ có validate. Layout responsive; CSS Modules tách style theo block; Axios + TanStack Query xử lý gửi form.",
+        "Service introduction page with hero, pricing, FAQ, and validated contact form. Responsive layout; CSS Modules for scoped styles; Axios + TanStack Query for form submission.",
       tech: [
         "React",
         "SASS",
@@ -239,9 +243,9 @@ const portfolioData: PortfolioData = {
     },
     {
       id: 3,
-      title: "ChaTask — Quản lý công việc cá nhân",
+      title: "ChaTask — Personal Task Manager",
       description:
-        "Todo app với CRUD task, filter theo trạng thái, lưu LocalStorage và cập nhật realtime qua Socket.IO. TypeScript giúp type-safe API nội bộ; React Router tách màn hình rõ ràng.",
+        "Todo app with CRUD tasks, status filters, LocalStorage persistence, and realtime updates via Socket.IO. TypeScript for type-safe internal APIs; React Router for clear screen separation.",
       tech: [
         "React",
         "TypeScript",
@@ -261,9 +265,9 @@ const portfolioData: PortfolioData = {
     },
     {
       id: 4,
-      title: "Festaria MD — Hệ thống bán hàng cho CloudMD",
+      title: "Festaria MD — Sales Platform for CloudMD",
       description:
-        "Nền tảng thương mại: catalog sản phẩm, giỏ hàng, checkout và màn hình quản lý tồn kho. Bootstrap + Tailwind cho layout nhanh; Redux Toolkit đồng bộ state đơn hàng giữa các tab.",
+        "E-commerce platform: product catalog, cart, checkout, and inventory management screens. Bootstrap + Tailwind for rapid layout; Redux Toolkit syncs order state across tabs.",
       tech: [
         "React",
         "React Router",
@@ -282,48 +286,48 @@ const portfolioData: PortfolioData = {
 
   timeline: [
     {
-      year: "T3/2026",
+      year: "Mar 2026",
       type: "work",
       title: "Frontend Developer",
       organization: "TCOM CORP",
       description:
-        "Phụ trách module bán hàng Festaria MD cho CloudMD: luồng đặt hàng, CRUD sản phẩm và đồng bộ tồn kho. Tối ưu form nhiều bước, tách component tái sử dụng và quản lý state với Redux Toolkit.",
+        "Owned the Festaria MD sales module for CloudMD: order flow, product CRUD, and inventory sync. Optimized multi-step forms, extracted reusable components, and managed state with Redux Toolkit.",
       icon: "🛍️",
     },
     {
-      year: "T10/2025",
+      year: "Oct 2025",
       type: "work",
       title: "Frontend Developer",
       organization: "TCOM CORP",
       description:
-        "Phát triển ChaTask — giao diện quản lý task với filter, board và thông báo realtime qua Socket.IO. Áp dụng TypeScript để giảm lỗi khi mở rộng API; TanStack Query cho fetch và cache dữ liệu.",
+        "Built ChaTask — task management UI with filters, board views, and realtime notifications via Socket.IO. Used TypeScript to reduce bugs when scaling APIs; TanStack Query for fetch and cache.",
       icon: "📋",
     },
     {
-      year: "T3/2025",
+      year: "Mar 2025",
       type: "work",
       title: "Frontend Developer",
       organization: "TCOM CORP",
       description:
-        "Làm module chấm công nội bộ trên ERP: bảng chấm công, duyệt đơn nghỉ và export báo cáo. Tích hợp REST API, phân quyền theo vai trò và xử lý edge case timezone/ngày lễ.",
+        "Developed internal ERP attendance module: timesheets, leave approval, and report export. Integrated REST APIs, role-based access, and handled timezone/holiday edge cases.",
       icon: "⏱️",
     },
     {
-      year: "T8/2024",
+      year: "Aug 2024",
       type: "work",
       title: "Frontend Developer",
       organization: "TCOM CORP",
       description:
-        "Bảo trì Ziraiten — nền tảng truyện tranh thị trường Nhật: lazy-load chapter, sửa lỗi responsive và rút gọn bundle. Phối hợp QA để tái hiện bug đọc trên mobile.",
+        "Maintained Ziraiten — Japanese manga platform: lazy-loaded chapters, fixed responsive bugs, and reduced bundle size. Worked with QA to reproduce mobile reading issues.",
       icon: "📚",
     },
     {
-      year: "T5/2024",
+      year: "May 2024",
       type: "work",
       title: "Frontend Intern",
       organization: "TCOM CORP",
       description:
-        "Thực tập team Fulfillment: fix bug UI, viết component dùng chung và làm quen quy trình review trên GitLab. Học cách estimate task nhỏ và báo cáo tiến độ theo sprint.",
+        "Interned on the Fulfillment team: fixed UI bugs, built shared components, and learned GitLab review workflows. Practiced task estimation and sprint progress reporting.",
       icon: "🌱",
     },
   ],
