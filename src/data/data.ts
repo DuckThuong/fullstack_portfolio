@@ -150,7 +150,7 @@ export function getContactChannels(profile: Profile): ContactChannel[] {
 
 const portfolioData: PortfolioData = {
   profile: {
-    name: "Trịnh Đức Thưởng",
+    name: "TRINH DUC THUONG",
     title: "FrontEnd ReactJS Developer",
     tagline:
       "Turning ideas into polished interfaces — one line of code at a time.",
@@ -285,9 +285,9 @@ const portfolioData: PortfolioData = {
     },
     {
       id: 5,
-      title: "INBID — Nền tảng đấu giá trực tuyến",
+      title: "INBID — Online Auction Platform",
       description:
-        "Dự án tại doanh nghiệp: nền tảng đấu giá với danh sách phiên đấu giá, đặt giá thầu và theo dõi kết quả realtime. WebSocket cập nhật giá thầu tức thì, xử lý thông báo và tin nhắn trực tuyến. Tích hợp thanh toán Stripe và liên kết tài khoản Instagram/Facebook.",
+        "Enterprise project: auction platform with session listings, bidding, and realtime result tracking. WebSocket pushes bid updates instantly; handles notifications and live messaging. Integrated Stripe payments and Instagram/Facebook account linking.",
       tech: [
         "React",
         "React Router",
@@ -306,9 +306,9 @@ const portfolioData: PortfolioData = {
     },
     {
       id: 6,
-      title: "ERP Chấm Công — Nền tảng quản lý chấm công nội bộ",
+      title: "ERP Attendance — Internal Time Tracking System",
       description:
-        "Dự án tại doanh nghiệp: module quản lý chấm công gồm bảng chấm công, duyệt đơn nghỉ và export báo cáo. Tích hợp REST API, phân quyền theo vai trò và xử lý edge case timezone/ngày lễ. Tự động cập nhật ngày công khi nhân viên sử dụng phép; hỗ trợ theo dõi và quản lý lịch nghỉ lễ để đảm bảo tính chính xác của dữ liệu.",
+        "Enterprise project: attendance module with timesheets, leave approval, and report export. REST API integration, role-based access, and timezone/holiday edge cases. Auto-updates workdays when employees use leave; tracks holiday schedules to keep data accurate.",
       tech: [
         "React",
         "React Router",
@@ -327,9 +327,9 @@ const portfolioData: PortfolioData = {
     },
     {
       id: 7,
-      title: "CowaTech HomePage — Nền tảng giới thiệu công ty",
+      title: "CowaTech HomePage — Company Introduction Site",
       description:
-        "Dự án tại doanh nghiệp: trang giới thiệu công ty gồm trang chủ, thông tin công ty và các dịch vụ. Redux Toolkit quản lý state ứng dụng và đồng bộ dữ liệu giữa các component. Giao diện quản trị cho phép cập nhật nội dung linh hoạt mà không cần chỉnh mã nguồn. Xây dựng UI với Tailwind CSS và Bootstrap, đảm bảo responsive trên nhiều thiết bị.",
+        "Enterprise project: company site with homepage, company info, and services. Redux Toolkit manages app state and syncs data across components. Admin UI allows flexible content updates without code changes. Built with Tailwind CSS and Bootstrap for responsive layouts.",
       tech: [
         "React",
         "React Router",

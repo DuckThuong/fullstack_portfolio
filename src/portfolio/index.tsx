@@ -382,7 +382,7 @@ function SkillBar({ skill, index }: SkillBarProps) {
 
 // ─── SKILLS SECTION ───────────────────────────────────────────────────────────
 
-const LEARNING_ITEMS = ["Next.js", "Node.js", "Docker"];
+const LEARNING_ITEMS = ["Nest.js", "TypeOrm", "MongoDB", "Docker"];
 
 function SkillsSection() {
   const { skills } = portfolioData;
@@ -567,9 +567,8 @@ function ContactSection() {
                 href={channel.href}
                 target={channel.id === "phone" ? undefined : "_blank"}
                 rel={channel.id === "phone" ? undefined : "noreferrer"}
-                className={`contact__channel contact__channel--${channel.id}${
-                  channel.primary ? " contact__channel--primary" : ""
-                }`}
+                className={`contact__channel contact__channel--${channel.id}${channel.primary ? " contact__channel--primary" : ""
+                  }`}
               >
                 <span className="contact__channel-icon">{channel.icon}</span>
                 <div className="contact__channel-body">
