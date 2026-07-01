@@ -69,7 +69,6 @@ export interface TimelineItem {
 
 export type TechBgKind = "react" | "scss" | "code";
 
-/** Phần tử nền trang trí (React / SCSS) — chỉnh vị trí & nội dung tại đây */
 export interface TechBgItem {
   id: string;
   kind: TechBgKind;
@@ -146,21 +145,20 @@ export function getContactChannels(profile: Profile): ContactChannel[] {
   ];
 }
 
-// ─── DATA ─────────────────────────────────────────────────────────────────────
 
 const portfolioData: PortfolioData = {
   profile: {
     name: "TRINH DUC THUONG",
-    title: "FrontEnd ReactJS Developer",
+    title: "Fullstack Developer — ReactJS & NestJS",
     tagline:
-      "Turning ideas into polished interfaces — one line of code at a time.",
+      "Turning ideas into polished, end-to-end products — frontend to backend.",
     email: "trinhthuong26022003@gmail.com",
     phone: "0868 472 032",
     location: "Hanoi, Vietnam",
     avatar: avatarPhoto,
     avatarInitials: "TT",
     avatarColor: "#6C63FF",
-    bio: "Frontend Developer focused on React and TypeScript — I enjoy turning wireframes into smooth, maintainable UIs. Experience spans bus booking, logistics, e-commerce, and ERP systems. Looking for a team where I can keep learning, ship quality code, and collaborate well with designers and backend engineers.",
+    bio: "Fullstack Developer with a strong focus on ReactJS/TypeScript on the frontend and NestJS on the backend, plus working experience in Java Spring Boot. I enjoy owning features end-to-end — from API design and database modeling to building smooth, maintainable UIs. Experience spans bus booking, logistics, real-time bidding, ERP, and e-commerce systems. Looking for a team where I can keep learning, ship quality code, and collaborate well with designers, QA, and backend engineers.",
     social: {
       github: "https://github.com/DuckThuong",
       linkedin:
@@ -172,27 +170,33 @@ const portfolioData: PortfolioData = {
   },
 
   stats: [
-    { label: "Projects completed", value: "6" },
+    { label: "Projects completed", value: "7+" },
     { label: "Years of experience", value: "2" },
-    { label: "Technologies", value: "8+" },
+    { label: "Technologies", value: "10+" },
     { label: "GitHub commits", value: "~ 300+" },
   ],
 
   skills: {
     technical: [
-      { name: "HTML5 / CSS3", level: 90, color: "#E34F26" },
-      { name: "ReactJS", level: 85, color: "#61DAFB" },
-      { name: "Ant Design", level: 80, color: "#147f92" },
-      { name: "JavaScript (ES6+)", level: 80, color: "#F7DF1E" },
+      { name: "ReactJS", level: 90, color: "#61DAFB" },
+      { name: "NestJS", level: 85, color: "#E0234E" },
       { name: "TypeScript", level: 85, color: "#3178C6" },
+      { name: "HTML5 / CSS3", level: 90, color: "#E34F26" },
+      { name: "JavaScript (ES6+)", level: 80, color: "#F7DF1E" },
+      { name: "Ant Design", level: 80, color: "#147f92" },
       { name: "TanStack Query", level: 80, color: "#14af2e" },
+      { name: "Node.js", level: 78, color: "#3C873A" },
+      { name: "RESTful API Design", level: 78, color: "#009688" },
       { name: "Git / GitHub / GitLab", level: 75, color: "#F05032" },
-      { name: "REST API / Axios", level: 72, color: "#FF6B35" },
+      { name: "Axios / REST Integration", level: 75, color: "#FF6B35" },
+      { name: "WebSocket / Socket.IO", level: 70, color: "#010101" },
+      { name: "MySQL", level: 65, color: "#00758F" },
       { name: "Tailwind CSS", level: 60, color: "#06B6D4" },
       { name: "Redux Toolkit", level: 60, color: "#3b0e85" },
       { name: "SASS", level: 60, color: "#74a31d" },
+      { name: "Java / Spring Boot", level: 30, color: "#6DB33F" },
     ],
-    tools: ["VS Code", "Figma", "Postman", "Vercel", "Firebase"],
+    tools: ["VS Code", "Figma", "Postman", "Vercel", "Firebase", "Ngrok"],
     soft: [
       "Logical thinking",
       "Teamwork",
@@ -244,6 +248,26 @@ const portfolioData: PortfolioData = {
     },
     {
       id: 3,
+      title: "Ziraiten — Fullstack Payment Integration",
+      description:
+        "Built and integrated a Stripe payment gateway (webhook handling, transaction processing, reconciliation) on a NestJS backend. Developed the ReactJS frontend, fixing pagination, responsive UI, and optimizing bundle size with code splitting and lazy loading.",
+      tech: [
+        "React",
+        "NestJS",
+        "TypeScript",
+        "Stripe",
+        "Webhook",
+        "RESTful API",
+        "MySQL",
+      ],
+      image: "💳",
+      color: "#635BFF",
+      demo: "#",
+      github: "#",
+      featured: true,
+    },
+    {
+      id: 4,
       title: "ChaTask — Personal Task Manager",
       description:
         "Todo app with CRUD tasks, status filters, LocalStorage persistence, and realtime updates via Socket.IO. TypeScript for type-safe internal APIs; React Router for clear screen separation.",
@@ -265,17 +289,18 @@ const portfolioData: PortfolioData = {
       featured: false,
     },
     {
-      id: 4,
+      id: 5,
       title: "Festaria MD — Sales Platform for CloudMD",
       description:
-        "E-commerce platform: product catalog, cart, checkout, and inventory management screens. Bootstrap + Tailwind for rapid layout; Redux Toolkit syncs order state across tabs.",
+        "Fullstack e-commerce module: built backend order processing, product CRUD, and inventory sync with Java Spring Boot; developed multi-step checkout forms on the frontend with HTML/JavaScript, focused on UX and form validation.",
       tech: [
+        "Java",
+        "Spring Boot",
+        "MySQL",
         "React",
-        "React Router",
+        "HTML5",
+        "JavaScript",
         "Redux Toolkit",
-        "Tailwind CSS",
-        "Bootstrap",
-        "LocalStorage",
       ],
       image: "🏪",
       color: "#45B7D1",
@@ -284,10 +309,10 @@ const portfolioData: PortfolioData = {
       featured: false,
     },
     {
-      id: 5,
+      id: 6,
       title: "INBID — Online Auction Platform",
       description:
-        "Enterprise project: auction platform with session listings, bidding, and realtime result tracking. WebSocket pushes bid updates instantly; handles notifications and live messaging. Integrated Stripe payments and Instagram/Facebook account linking.",
+        "Real-time bidding interface built with ReactJS. Implemented WebSocket for live bidding and notifications, synchronized order state with Redux Toolkit, and integrated third-party APIs (Instagram Graph API, Facebook SDK, Stripe API).",
       tech: [
         "React",
         "React Router",
@@ -296,7 +321,7 @@ const portfolioData: PortfolioData = {
         "Redux Toolkit",
         "Tailwind CSS",
         "Bootstrap",
-        "LocalStorage",
+        "Stripe API",
       ],
       image: "🏷️",
       color: "#45B7D1",
@@ -305,19 +330,18 @@ const portfolioData: PortfolioData = {
       featured: false,
     },
     {
-      id: 6,
+      id: 7,
       title: "ERP Attendance — Internal Time Tracking System",
       description:
-        "Enterprise project: attendance module with timesheets, leave approval, and report export. REST API integration, role-based access, and timezone/holiday edge cases. Auto-updates workdays when employees use leave; tracks holiday schedules to keep data accurate.",
+        "Enterprise project: attendance module with timesheets, leave approval, and report export (Excel/PDF). REST API integration, role-based access, and timezone/holiday edge cases handled on the frontend.",
       tech: [
         "React",
         "React Router",
         "TypeScript",
-        "WebSocket",
         "Redux Toolkit",
         "Tailwind CSS",
         "Bootstrap",
-        "LocalStorage",
+        "RESTful API",
       ],
       image: "⏱️",
       color: "#45B7D1",
@@ -326,19 +350,20 @@ const portfolioData: PortfolioData = {
       featured: false,
     },
     {
-      id: 7,
-      title: "CowaTech HomePage — Company Introduction Site",
+      id: 8,
+      title: "CowaTech — Company Site & Internal Platform",
       description:
-        "Enterprise project: company site with homepage, company info, and services. Redux Toolkit manages app state and syncs data across components. Admin UI allows flexible content updates without code changes. Built with Tailwind CSS and Bootstrap for responsive layouts.",
+        "Fullstack project: built RESTful APIs with NestJS for authentication/authorization and role-based access control (RBAC); developed the frontend with ReactJS, Redux Toolkit, Tailwind CSS, and Bootstrap, ensuring seamless client-server integration.",
       tech: [
         "React",
-        "React Router",
+        "NestJS",
         "TypeScript",
-        "WebSocket",
+        "JWT",
+        "RBAC",
         "Redux Toolkit",
         "Tailwind CSS",
         "Bootstrap",
-        "LocalStorage",
+        "MySQL",
       ],
       image: "🏢",
       color: "#45B7D1",
@@ -350,27 +375,45 @@ const portfolioData: PortfolioData = {
 
   timeline: [
     {
-      year: "Mar 2026",
+      year: "May 2026",
       type: "work",
-      title: "Frontend Developer",
+      title: "Fullstack Developer",
       organization: "TCOM CORP",
       description:
-        "Owned the Festaria MD sales module for CloudMD: order flow, product CRUD, and inventory sync. Optimized multi-step forms, extracted reusable components, and managed state with Redux Toolkit.",
+        "Building GO-RIDE, a bus ticket booking platform: trip search, seat selection, and booking management. Managed state with Redux Toolkit, synced server state with TanStack Query, and built responsive UI with Ant Design and SASS.",
+      icon: "🚌",
+    },
+    {
+      year: "Mar 2026",
+      type: "work",
+      title: "Fullstack Developer",
+      organization: "TCOM CORP",
+      description:
+        "Owned the Festaria MD sales module for CloudMD: built backend order flow, product CRUD, and inventory sync with Java Spring Boot; developed multi-step checkout forms on the frontend, focusing on UX and validation.",
       icon: "🛍️",
+    },
+    {
+      year: "Dec 2025",
+      type: "work",
+      title: "Fullstack Developer",
+      organization: "TCOM CORP",
+      description:
+        "Built RESTful APIs with NestJS for authentication and role-based access control (RBAC) on CowaTech; developed the ReactJS frontend with Redux Toolkit, Tailwind CSS, and Bootstrap.",
+      icon: "🏢",
     },
     {
       year: "Oct 2025",
       type: "work",
-      title: "Frontend Developer",
+      title: "Fullstack Developer",
       organization: "TCOM CORP",
       description:
-        "Built ChaTask — task management UI with filters, board views, and realtime notifications via Socket.IO. Used TypeScript to reduce bugs when scaling APIs; TanStack Query for fetch and cache.",
+        "Built ChaTask — task management UI with filters, Kanban board views, and realtime notifications via Socket.IO. Used TypeScript to reduce bugs when scaling APIs; TanStack Query for fetch and cache.",
       icon: "📋",
     },
     {
       year: "Mar 2025",
       type: "work",
-      title: "Frontend Developer",
+      title: "Fullstack Developer",
       organization: "TCOM CORP",
       description:
         "Developed internal ERP attendance module: timesheets, leave approval, and report export. Integrated REST APIs, role-based access, and handled timezone/holiday edge cases.",
@@ -379,25 +422,24 @@ const portfolioData: PortfolioData = {
     {
       year: "Aug 2024",
       type: "work",
-      title: "Frontend Developer",
+      title: "Fullstack Developer",
       organization: "TCOM CORP",
       description:
-        "Maintained Ziraiten — Japanese manga platform: lazy-loaded chapters, fixed responsive bugs, and reduced bundle size. Worked with QA to reproduce mobile reading issues.",
-      icon: "📚",
+        "Built and integrated a Stripe payment gateway on a NestJS backend for Ziraiten (webhook handling, transaction processing, reconciliation); developed the ReactJS frontend, fixing pagination, responsive UI, and bundle size.",
+      icon: "💳",
     },
     {
-      year: "May 2024",
+      year: "Mar 2024",
       type: "work",
-      title: "Frontend Intern",
+      title: "Frontend Developer Intern",
       organization: "TCOM CORP",
       description:
-        "Interned on the Fulfillment team: fixed UI bugs, built shared components, and learned GitLab review workflows. Practiced task estimation and sprint progress reporting.",
+        "Interned on the Fulfillment team: fixed UI bugs, built shared components with ReactJS/Ant Design/SASS, integrated REST APIs with Axios and TanStack Query, and learned GitLab review workflows.",
       icon: "🌱",
     },
   ],
 };
 
-/** Nền Hero / toàn trang: logo React, nhãn SCSS, đoạn code */
 export const techBackgroundItems: TechBgItem[] = [
   {
     id: "react-1",
@@ -463,9 +505,9 @@ export const techBackgroundItems: TechBgItem[] = [
     delay: 0.5,
   },
   {
-    id: "code-scss-var",
+    id: "code-nest",
     kind: "code",
-    code: "$color-primary: #6c63ff;",
+    code: "@Controller('users') export class UsersController {}",
     top: "18%",
     left: "22%",
     duration: 13,
