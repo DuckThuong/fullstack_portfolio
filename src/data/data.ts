@@ -166,7 +166,7 @@ const portfolioData: PortfolioData = {
       facebook: "https://www.facebook.com/duck.thuongggg/",
     },
     cvFile: cvPdf,
-    cvFileName: "CV_FrontEnd_TrinhDucThuong.pdf",
+    cvFileName: "CV_FullStack_Trịnh_Đức_Thưởng.pdf",
   },
 
   stats: [
