@@ -1,5 +1,5 @@
 import avatarPhoto from "./avatar.jpg";
-import cvPdf from "./CV_FrontEnd_TrinhDucThuong.pdf";
+import cvPdf from "./CV_FullStack_Trịnh_Đức_Thưởng.pdf";
 
 // ─── INTERFACES ──────────────────────────────────────────────────────────────
 
